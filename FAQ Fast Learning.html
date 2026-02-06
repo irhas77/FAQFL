@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Mahasiswa & Dosen - Fast Learning UMB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        h1 {
+            color: #004080;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .category {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .category-header {
+            background-color: #004080;
+            color: white;
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .category-header:hover {
+            background-color: #003366;
+        }
+        
+        .category-icon {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .category-header.active .category-icon {
+            transform: rotate(45deg);
+        }
+        
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #f9f9f9;
+        }
+        
+        .category-content.active {
+            max-height: 5000px;
+        }
+        
+        .accordion {
+            padding: 15px;
+        }
+        
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .accordion-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .accordion-header {
+            background-color: #f0f4f8;
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background-color: #e4eaf1;
+        }
+        
+        .accordion-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #004080;
+            margin: 0;
+        }
+        
+        .accordion-icon {
+            font-size: 18px;
+            color: #004080;
+            transition: transform 0.3s;
+        }
+        
+        .accordion-header.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .accordion-content.active {
+            padding: 20px;
+            max-height: 1000px;
+        }
+        
+        .answer {
+            padding-left: 10px;
+            border-left: 3px solid #e0e0e0;
+        }
+        
+        .answer p {
+            margin-bottom: 10px;
+        }
+        
+        .answer ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .answer li {
+            margin-bottom: 5px;
+        }
+        
+        .highlight {
+            background-color: #f0f7ff;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #004080;
+        }
+        
+        .contact-info {
+            background-color: #e8f4ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .contact-info a {
+            color: #004080;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .note {
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .category-header {
+                padding: 16px;
+                font-size: 18px;
+            }
+            
+            .accordion-header h3 {
+                font-size: 15px;
+            }
+            
+            .accordion-content.active {
+                padding: 15px;
+            }
+            
+            .accordion {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FAQ Fast Learning UMB</h1>
+            <p class="subtitle">Pertanyaan yang sering diajukan oleh Mahasiswa dan Dosen</p>
+        </header>
+        
+        <!-- Bagian Mahasiswa -->
+        <div class="category" id="category-mahasiswa">
+            <div class="category-header">
+                <span>MAHASISWA</span>
+                <span class="category-icon">+</span>
+            </div>
+            <div class="category-content">
+                <div class="accordion">
+                    <!-- Item 1 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Bagaimana cara Login Fast Learning?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Login fast menggunakan NIM dan Password default Tanggal Lahir (dengan format: ddmmyyyy)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Bagaimana jika saya belum mendapat NIM?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Silakan lakukan konfirmasi ke Biro Penerimaan Mahasiswa Baru (Petugas Pendaftaran) dengan menghubungi hotline:</p>
+                                <div class="contact-info">
+                                    BPM 1 : 085711436602<br>
+                                    BPM 2 : 081110067311
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Saya tidak bisa login FAST Learning</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Jika Anda terkendala saat login di web Fast Learning, silakan menghubungi Biro Teknologi Informasi (BTI) melalui laman: <a href="http://support.mercubuana.ac.id" target="_blank">http://support.mercubuana.ac.id</a>, lalu pilih menu <strong>Open a new ticket</strong>, pada help topic pilih <strong>Fast Learning / Akses (log in)</strong> lalu isi datanya sesuai dengan data Anda. Setelah itu tim IT akan menghubungi Anda melalui email.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Saya tidak bisa mengakses web Fast Learning</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Dikarenakan sedang ada maintenance, dimohon untuk login kembali secara berkala atau hubungi hotline BTI UMB:</p>
+                                <div class="contact-info">
+                                    Hotline BTI UMB: +62 851-3337-0871
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 5 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Belum mendapatkan informasi tentang aktifitas perkuliahan FAST untuk mahasiswa baru?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Dapatkan informasi melalui link berikut: <a href="https://bit.ly/infomahasiswafastlearning" target="_blank">https://bit.ly/infomahasiswafastlearning</a></p>
+                                <div class="highlight">
+                                    Akses dengan menggunakan email Mercu Buana<br>
+                                    Contoh: 4145883897@student.mercubuana.ac.id
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 6 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Bagaimana jika saya tidak bisa log in karena lupa password?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Jika Anda terkendala lupa password dan reset password, silakan menghubungi Biro Teknologi Informasi (BTI) melalui laman: <a href="http://support.mercubuana.ac.id" target="_blank">http://support.mercubuana.ac.id</a>, lalu pilih menu <strong>Open a new ticket</strong>, pada help topic pilih <strong>Fast Learning / Akses (log in)</strong> lalu isi datanya sesuai dengan data Anda. Setelah itu tim IT akan mengirimkan link untuk reset password melalui email.</p>
+                                <div class="contact-info">
+                                    Atau hubungi hotline BTI UMB: +62 851-3337-0871
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 7 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Menu apa saja yang terdapat pada tampilan dashboard Fast Learning?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Pada tampilan dashboard Fast Learning, terdapat beberapa menu dengan masing-masing fungsinya. Berikut adalah penjelasannya:</p>
+                                <ul>
+                                    <li><strong>Home</strong>: Halaman awal Fast Learning, pada halaman ini berisi pengumuman, panduan penggunaan Fast Learning.</li>
+                                    <li><strong>My Course</strong>: Mata kuliah yang Anda ikuti pada semester berjalan.</li>
+                                    <li><strong>Profile</strong>: Informasi tentang profil Anda & menu untuk ubah password.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 8 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Bagaimana cara join ke dalam Google Meet?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Sebelum Anda join ke dalam Google Meet, pastikan Anda sudah login menggunakan email student. Setelah itu silakan klik section Google Meet yang sudah dibuat oleh Dosen pada web Fast Learning.</p>
+                                <div class="highlight">
+                                    Contoh email student: 4145883897@student.mercubuana.ac.id
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 9 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Mengapa absensi saya tidak tercatat pada SIA?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Karena ada aktivitas yang tidak sesuai. Jika sudah sesuai, silakan konfirmasi kepada dosen pengampu mata kuliah.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bagian Dosen -->
+        <div class="category" id="category-dosen">
+            <div class="category-header">
+                <span>DOSEN</span>
+                <span class="category-icon">+</span>
+            </div>
+            <div class="category-content">
+                <div class="accordion">
+                    <!-- Item 1 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Bagaimana cara merubah status (N menjadi Y) pada SIA?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Dapatkan tutorial ubah absen pada link berikut: <a href="http://bit.ly/infofastlearningumb2025" target="_blank">http://bit.ly/infofastlearningumb2025</a></p>
+                                <div class="highlight">
+                                    Akses dengan menggunakan email Mercu Buana<br>
+                                    Contoh: fulana@mercubuana.ac.id
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Bagaimana jika kehadiran Dosen tidak tercatat pada SIA?</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="answer">
+                                <p>Dapat menghubungi Admin Fast:</p>
+                                <div class="contact-info">
+                                    Telepon: 085285980952
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Informasi ini berlaku untuk sistem Fast Learning Universitas Mercu Buana</p>
+            <p class="note">Klik pada kategori untuk menampilkan/menyembunyikan pertanyaan. Klik pada pertanyaan untuk melihat jawaban.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fungsi untuk toggle kategori (Mahasiswa/Dosen)
+            function toggleCategory(header) {
+                const category = header.parentElement;
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.category-icon');
+                
+                // Toggle active class pada header
+                header.classList.toggle('active');
+                
+                // Toggle active class pada konten kategori
+                content.classList.toggle('active');
+                
+                // Ubah ikon kategori
+                if (header.classList.contains('active')) {
+                    icon.textContent = '-';
+                } else {
+                    icon.textContent = '+';
+                    
+                    // Tutup semua pertanyaan dalam kategori yang ditutup
+                    const questionHeaders = content.querySelectorAll('.accordion-header.active');
+                    questionHeaders.forEach(questionHeader => {
+                        toggleAccordion(questionHeader);
+                    });
+                }
+            }
+            
+            // Fungsi untuk toggle pertanyaan individual
+            function toggleAccordion(header) {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+                
+                // Toggle active class pada header
+                header.classList.toggle('active');
+                
+                // Toggle active class pada konten
+                content.classList.toggle('active');
+                
+                // Ubah ikon
+                if (header.classList.contains('active')) {
+                    icon.textContent = '-';
+                } else {
+                    icon.textContent = '+';
+                }
+            }
+            
+            // Tambahkan event listener untuk kategori (Mahasiswa/Dosen)
+            const categoryHeaders = document.querySelectorAll('.category-header');
+            categoryHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    toggleCategory(header);
+                });
+            });
+            
+            // Tambahkan event listener untuk pertanyaan individual
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    toggleAccordion(header);
+                });
+            });
+            
+            // SEMUA KATEGORI TERTUTUP SECARA DEFAULT
+            // Tidak ada kategori yang dibuka otomatis saat halaman dimuat
+            
+            // Untuk membuka kategori tertentu secara default,
+            // hapus komentar pada kode di bawah ini:
+            /*
+            // Buka kategori Mahasiswa secara default
+            const mahasiswaCategory = document.querySelector('#category-mahasiswa .category-header');
+            if (mahasiswaCategory) {
+                toggleCategory(mahasiswaCategory);
+            }
+            */
+        });
+    </script>
+</body>
+</html>
